@@ -1,0 +1,20 @@
+.season-clock {
+    display: grid;
+    place-content: center;
+
+
+    padding: 1em;
+    width: 60vw;
+    height: 20vh;
+
+text-align: center;
+
+    border-radius: 2vh;
+    background-color: white;
+
+    transition: background-color 1s;
+
+    &.darkMode {
+        background-color: rgb(53, 53, 53);
+    }
+}
