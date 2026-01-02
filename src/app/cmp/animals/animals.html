@@ -1,0 +1,24 @@
+<section>
+    <section class="animal-list">
+    <h4 [title]="'$' + 10*10*10 + ' Worth Of App'">
+        {{title}}
+    </h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Count</th>
+                    <th>Link</th>   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let animal of animalInfos;let idx = index ">
+                <!-- <tr *ngFor="let animal of animalInfos;let isFirst = first "> -->
+                    <td>{{animal.type}}</td>
+                    <td>{{animal.count}}</td>
+                    <td ><a [href]="'https://www.google.com/search?q=' + animal.type" target="_blank">Search</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
