@@ -7,5 +7,17 @@ import { Component, signal } from '@angular/core';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('My-First-Lagecy-Angular-Project');
+
+  startFrom: number = 10
+
+  title = 'My First Angular Project'
+
+  user: object = {
+    name: 'dan',
+    age: 37
+  }
+
+  ngOnInit() {
+    console.log(this.title)
+  }
 }

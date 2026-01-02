@@ -3,12 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app-root/app';
-import { SeasonClock } from './season-clock/season-clock';
+import { SeasonClock } from './cmp/season-clock/season-clock';
+import { Animals } from './cmp/animals/animals';
+import { CountDown } from './cmp/count-down/count-down';
 
 @NgModule({
   declarations: [
     App,
-    SeasonClock
+    SeasonClock,
+    Animals,
+    CountDown
   ],
   imports: [
     BrowserModule,
