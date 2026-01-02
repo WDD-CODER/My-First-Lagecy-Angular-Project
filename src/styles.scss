@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+.main-container {
+    display: grid;
+    justify-items: center;
+
+    height: 90vh;
+    max-width: 95vw;
+
+    padding: 1em;
+
+    background-color: gray;
+
+    border-radius: 1vh;
+    border: 1px black solid;
+
+ h4 {
+        text-align: center;
+        text-decoration: underline dashed black;
+        text-underline-offset: 5px;
+    }
+}
