@@ -1,4 +1,4 @@
-import { Component, Input, input, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, signal } from '@angular/core';
 
 @Component({
   selector: 'count-down',
@@ -15,29 +15,65 @@ import { Component, Input, input, OnDestroy, OnInit, signal } from '@angular/cor
 })
 export class CountDown implements OnInit, OnDestroy {
 
-  @Input() user!: object
+  PauseCount(ev: MouseEvent) {
+    this.countState = !this.countState
+    console.log("🚀 ~ CountDown ~ PauseCount ~ this.countState:", this.countState)
+    if (!this.countState) return this.startCountDown()
+    else if (this.countState) clearInterval(this.intervalId)
+  }
+
+  restartCount(ev: MouseEvent) {
+    clearInterval(this.intervalId)
+    if (this.startFrom) this.currCount = this.startFrom
+    this.startCountDown()
+    this.CountRestart.emit('Restarting Count')
+  }
+
   @Input() startFrom!: number
+  @Input() showCountMsg!: string
 
-  currCount = signal(this.startFrom)
+  @Output() CountRestart = new EventEmitter
+  @Output() CountDone = new EventEmitter
 
+  countState: boolean = false
+
+  currCount: number = 2
   isLow: boolean = false
 
   private intervalId: number = 0
-  // startFrom!: startFrom
-
-  // startFrom = input<number>(0);
 
   ngOnInit(): void {
-    // this.currCount = this.startFrom
+    if (this.startFrom) this.currCount = this.startFrom
+    this.startCountDown()
+  }
+
+playSound(){
+  const audio = new Audio ('/success-340660.mp3')
+  audio.play()
+}
+
+  onCountDone() {
+    this.playSound()
+    this.countState = false
+    this.CountDone.emit('Count Is Done Yoo !!')
+  }
+
+  startCountDown() {
+    // if (this.startFrom) this.currCount = this.startFrom
+    this.countState = false
     this.intervalId = setInterval(() => {
-    //   this.currCount.set()
-    //   if (this.currCount < 6) this.isLow = true
-    //   if (this.currCount === 0) clearInterval(this.intervalId)
+      this.currCount--
+      if (this.currCount <= 6) this.isLow = true
+      if (this.currCount <= 0) {
+        this.onCountDone()
+        clearInterval(this.intervalId)
+      }
 
     }, 1000);
   }
 
   ngOnDestroy(): void {
+
     clearInterval(this.intervalId)
   }
 

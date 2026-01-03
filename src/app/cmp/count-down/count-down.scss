@@ -1,3 +1,22 @@
+:host{
+    display: grid;
+
+    place-content: center;
+    
+    max-width: 200px;
+    height:200px;
+
+    gap: 1em;
+
+    text-align: center;
+    background-color: inherit;
+
+}
+
 .low{
     color: red;
+}
+
+.done{
+    background-color: green;
 }

@@ -1,2 +1,4 @@
-<!-- <div [class.low]="isLow" >Starting at: {{ startFrom }}</div> -->
- <span>hello {{user | json}}</span>
+<button (click)="PauseCount($event)" *ngIf="!showCountMsg">{{(countState)?  'Resume' : 'Pause'}}</button>
+<button (click)="restartCount($event)">Restart Count From {{startFrom}}</button>
+<div [class.low]="isLow"  *ngIf="!showCountMsg">Count : {{ currCount }}</div>
+<span *ngIf="showCountMsg">{{showCountMsg}}</span>
