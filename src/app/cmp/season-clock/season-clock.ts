@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'season-clock',
@@ -10,8 +10,6 @@ export class SeasonClock implements OnInit, OnDestroy {
   title = 'Season Clock'
 
   now: Date = new Date()
-  // currTime = signal(new Date())
-  formattedTime: string = ''
   seasonName: string = ''
   seasonImg: string = ''
   isDark: boolean = false

@@ -6,17 +6,23 @@ import { App } from './app-root/app';
 import { SeasonClock } from './cmp/season-clock/season-clock';
 import { Animals } from './cmp/animals/animals';
 import { CountDown } from './cmp/count-down/count-down';
+import { WatcherPreview } from './cmp/watcher-preview/watcher-preview';
+import { WatchersList } from './cmp/watchers/watchers-list';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     App,
     SeasonClock,
     Animals,
-    CountDown
+    CountDown,
+    WatchersList,
+    WatcherPreview
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

@@ -2,8 +2,13 @@
   <h1 [title]="'Nice Way Of Making A Hover Title'">
     {{title}}
   </h1>
-  <animals></animals>
-  <season-clock></season-clock>
-   <!-- <count-down [user]="user" [startFrom]="startFrom"></count-down> -->
-   <count-down [user]="user"></count-down>
+  <!-- <animals></animals> -->
+  <!-- <season-clock></season-clock> -->
+   <!-- <count-down [class.done]="showCountMsg"
+    (CountRestart)="OnRestartCount($event)" 
+   (CountDone)="onShowCountIsDone($event)" 
+   [showCountMsg]="showCountMsg" 
+   [startFrom]="startFrom">
+  </count-down> -->
+<watcher-list></watcher-list>
 </main>

@@ -8,14 +8,18 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
 
-  startFrom: number = 10
+  OnRestartCount(msg: string) {    
+    this.showCountMsg = ''
+  }
+
+  onShowCountIsDone(msg: string) {
+    this.showCountMsg = msg
+  }
+
+  showCountMsg: string = ''
+  startFrom: number = 2
 
   title = 'My First Angular Project'
-
-  user: object = {
-    name: 'dan',
-    age: 37
-  }
 
   ngOnInit() {
     console.log(this.title)
