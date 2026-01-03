@@ -1,6 +1,9 @@
+h1 {
+    text-align: center;
+    text-decoration: underline dashed;
+    text-underline-offset: 5px;
+}
 
-    h1 {
-        text-align: center;
-        text-decoration: underline dashed;
-        text-underline-offset: 5px;
-    }
+.done {
+    background-color: green;
+}

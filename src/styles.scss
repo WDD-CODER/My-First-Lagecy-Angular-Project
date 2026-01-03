@@ -12,9 +12,17 @@
     border-radius: 1vh;
     border: 1px black solid;
 
- h4 {
+    h4 {
+        margin: 5px;
         text-align: center;
         text-decoration: underline dashed black;
         text-underline-offset: 5px;
+    }
+
+
+    button {
+        display: grid;
+        width: fit-content;
+        border-radius: 1vh;
     }
 }
