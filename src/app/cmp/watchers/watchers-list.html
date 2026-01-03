@@ -1,0 +1,35 @@
+<section class="watchers">
+    <button (click)="onAddWatcher($event)">Add Watcher</button>
+    <watcher-preview *ngFor="let watcher of watchers; let idx = index" (RemoveWatcher)="RemoveWatcher($event)"
+        (click)="onSelectWatcher($event,watcher)" [watcher]="watcher">
+    </watcher-preview>
+    <dialog #watcherDialog>
+
+        <div *ngIf="emptyWatcher">
+            <label for="fullname">
+                <h4>Watcher's Name</h4>
+                <input placeholder="watcher Full name" class="watcher-fullname" type="text"
+                    [(ngModel)]="emptyWatcher.fullname" name="fullname">
+            </label>
+            
+            <label for="movie">
+                <h4>Witch Movies Do He Watch</h4>
+                <input placeholder="place , between each movie" class="watcher-fullname" type="text"
+                    [(ngModel)]="movieInput" name="movie">
+            </label>
+
+            <section class="actions">
+                <button (click)="onSaveWatcher($event)">Save</button>
+                <button (click)="onCloseDialog($event)">Close</button>
+            </section>
+        </div>
+
+        <div *ngIf="selectedWatcher">
+            <h4 class="fullname">{{selectedWatcher.fullname}}</h4>
+            <ul class="movies">
+                <li *ngFor="let movie of selectedWatcher.movies;let idx = index">{{selectedWatcher.movies[idx]}}</li>
+            </ul>
+            <button (click)="onCloseDialog($event)">Close</button>
+        </div>
+    </dialog>
+</section>

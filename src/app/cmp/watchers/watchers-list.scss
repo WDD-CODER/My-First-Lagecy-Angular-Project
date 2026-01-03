@@ -1,0 +1,25 @@
+dialog {
+    div {
+        min-width: fit-content;
+        display: grid;
+        place-items: center;
+        gap: 10px;
+
+
+        label {
+            display: grid;
+
+            width: 100%;
+
+            input {
+                text-align: center;
+            }
+        }
+
+        .actions {
+            display: flex;
+            width: 100%;
+            justify-content: space-evenly;
+        }
+    }
+}

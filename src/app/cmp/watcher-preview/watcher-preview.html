@@ -1,0 +1,4 @@
+<article *ngIf="watcher" class="watcher">
+    <button (click)="onRemoveWatcher($event, watcher._id)">X</button>
+    <h4>{{watcher.fullname}}</h4>
+</article>
