@@ -24,52 +24,59 @@ export class CountDown implements OnInit, OnDestroy {
 
   restartCount(ev: MouseEvent) {
     clearInterval(this.intervalId)
-    if (this.startFrom) this.currCount = this.startFrom
+    if (this.startFrom) this.currCount = this.startFrom * 1000
+    else this.currCount =10000
     this.startCountDown()
     this.CountRestart.emit('Restarting Count')
   }
 
-  @Input() startFrom!: number
+  @Input() startFrom: number | undefined
   @Input() showCountMsg!: string
 
-  @Output() CountRestart = new EventEmitter
-  @Output() CountDone = new EventEmitter
+  @Output() CountRestart = new EventEmitter<string>()
+  @Output() CountDone = new EventEmitter<string>()
 
   countState: boolean = false
 
-  currCount: number = 2
-  isLow: boolean = false
+  currCount: number = 10000
+
+  isLow!: boolean
 
   private intervalId: number = 0
 
   ngOnInit(): void {
-    if (this.startFrom) this.currCount = this.startFrom
+    if (this.startFrom) {
+      this.startFrom < 6 ? this.isLow = true : this.isLow = false
+      this.currCount = this.startFrom * 1000
+    }
+
     this.startCountDown()
   }
-  primeAudio() {
+
+  private primeAudio() {
     // Just playing a silent, empty buffer "unlocks" the browser's audio state
     const audio = new Audio();
     audio.play().catch(() => { });
   }
-  
-  playSound() {
+
+  private playSound() {
     const audio = new Audio('/success-340660.mp3')
     audio.play()
   }
 
-  onCountDone() {
+  private onCountDone() {
     this.playSound()
     this.countState = false
     this.CountDone.emit('Count Is Done Yoo !!')
   }
 
-  startCountDown() {
+  private startCountDown() {
     // if (this.startFrom) this.currCount = this.startFrom
     this.countState = false
     this.intervalId = setInterval(() => {
       this.primeAudio()
-      this.currCount--
-      if (this.currCount <= 6) this.isLow = true
+      this.currCount -= 1000
+      if (this.currCount <= 6000) this.isLow = true
       if (this.currCount <= 0) {
         this.onCountDone()
         clearInterval(this.intervalId)
@@ -79,7 +86,6 @@ export class CountDown implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-
     clearInterval(this.intervalId)
   }
 

@@ -1,4 +1,4 @@
 <button (click)="PauseCount($event)" *ngIf="!showCountMsg">{{(countState)?  'Resume' : 'Pause'}}</button>
-<button (click)="restartCount($event)">Restart Count From {{startFrom}}</button>
-<div [class.low]="isLow"  *ngIf="!showCountMsg">Count : {{ currCount }}</div>
+<button (click)="restartCount($event)">Restart Count <span *ngIf="startFrom">From</span>  {{startFrom}}</button>
+<div [class.low]="isLow"  *ngIf="!showCountMsg">Count : {{ currCount | date:'mm:ss' }}</div>
 <span *ngIf="showCountMsg">{{showCountMsg}}</span>
