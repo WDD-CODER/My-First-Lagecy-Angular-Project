@@ -1,0 +1,57 @@
+:host{
+    display: grid;
+    place-content: end;
+}
+
+.mouse-tracker-container {
+    display: grid;
+    
+    margin: 10px;
+
+    width: fit-content;
+    min-width: 150px;
+
+    padding: 1em;
+    gap: 10px;
+
+
+    border-radius: 1vh;
+    border: 1px solid black;
+
+    background-color: gray;
+    &.active {
+        background-color: white;
+
+        .movements span {
+            background-color: gray;
+        }
+    }
+
+    button {
+        place-self: center;
+    }
+
+    .movements {
+        display: flex;
+        justify-content: space-between;
+
+        label {
+            padding: 5px;
+
+            text-align: center;
+
+            border-radius: 1vh;
+            border: 1px solid black;
+
+            span {
+                display: flex;
+                place-content: center;
+                padding: 5px;
+
+                border-radius: 1vh;
+                border: 1px solid black;
+
+            }
+        }
+    }
+}

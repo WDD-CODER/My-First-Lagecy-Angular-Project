@@ -1,0 +1,14 @@
+<div class="mouse-tracker-container" [class.active]="isOn">
+    <button (click)="OnSelectMouseState($event)">{{isOn? 'Pause' : 'Resume'}}</button>
+    <section class="movements">
+        <label>
+            Move X
+            <span class="move-x">{{mouseMoveX}}</span>
+        </label>
+        <label>
+            Move Y
+            <span class="move-y">{{mouseMoveY}}</span>
+        </label>
+
+    </section>
+</div>
