@@ -46,11 +46,16 @@ export class CountDown implements OnInit, OnDestroy {
     if (this.startFrom) this.currCount = this.startFrom
     this.startCountDown()
   }
-
-playSound(){
-  const audio = new Audio ('/success-340660.mp3')
-  audio.play()
-}
+  primeAudio() {
+    // Just playing a silent, empty buffer "unlocks" the browser's audio state
+    const audio = new Audio();
+    audio.play().catch(() => { });
+  }
+  
+  playSound() {
+    const audio = new Audio('/success-340660.mp3')
+    audio.play()
+  }
 
   onCountDone() {
     this.playSound()
@@ -62,6 +67,7 @@ playSound(){
     // if (this.startFrom) this.currCount = this.startFrom
     this.countState = false
     this.intervalId = setInterval(() => {
+      this.primeAudio()
       this.currCount--
       if (this.currCount <= 6) this.isLow = true
       if (this.currCount <= 0) {
