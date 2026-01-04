@@ -1,8 +1,10 @@
 <section class="watchers">
     <button (click)="onAddWatcher($event)">Add Watcher</button>
-    <watcher-preview *ngFor="let watcher of watchers; let idx = index" (RemoveWatcher)="RemoveWatcher($event)"
-        (click)="onSelectWatcher($event,watcher)" [watcher]="watcher">
-    </watcher-preview>
+    <section class="watchers-preview-list">
+        <watcher-preview *ngFor="let watcher of watchers; let idx = index" (RemoveWatcher)="RemoveWatcher($event)"
+            (click)="onSelectWatcher($event,watcher)" [watcher]="watcher">
+        </watcher-preview>
+    </section>
     <dialog #watcherDialog>
 
         <div *ngIf="emptyWatcher">
