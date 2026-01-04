@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+type Season = 'Spring' | 'Summer' | 'Autumn' | 'winter'
 @Component({
   selector: 'season-clock',
   standalone: false,
@@ -21,7 +22,7 @@ export class SeasonClock implements OnInit, OnDestroy {
     this.isDark = !this.isDark
   }
 
-  geSeasonName() {
+  geSeasonName():Season {
     let month = this.now.getMonth()
 
     if (month >= 2 && month <= 4) {

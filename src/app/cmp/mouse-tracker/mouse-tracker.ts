@@ -12,13 +12,16 @@ export class MouseTracker implements OnInit, OnDestroy {
     this.isOn = !this.isOn
   }
 
-  isOn: boolean = true
-  mouseMoveX!: number
-  mouseMoveY!: number
+  cords = {
+    x: 0,
+    y: 0
+  }
 
-   throttle = (fn:any, delay:number) => {
+  isOn: boolean = true
+
+  throttle = (fn: any, delay: number) => {
     let lastTime = 0;
-    return (...args:any) => {
+    return (...args: any) => {
       const now = new Date().getTime();
       if (now - lastTime >= delay) {
         lastTime = now;
@@ -27,10 +30,10 @@ export class MouseTracker implements OnInit, OnDestroy {
     };
   }
 
-  onMouseMove = (ev: MouseEvent) => {
+  onMouseMove = ({ x, y }: MouseEvent) => {
     if (!this.isOn) return
-    this.mouseMoveX = ev.clientX
-    this.mouseMoveY = ev.clientY
+    this.cords.x = x
+    this.cords.y = y
   }
 
   ngOnInit() {

@@ -17,7 +17,7 @@ export class App {
   }
 
   showCountMsg: string = ''
-  startFrom: number = 2
+  startFrom: number = 5
 
   title = 'My First Angular Project'
 
