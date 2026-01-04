@@ -2,29 +2,29 @@
     <button (click)="onAddWatcher($event)">Add Watcher</button>
     <section class="watchers-preview-list">
         <watcher-preview *ngFor="let watcher of watchers; let idx = index" (RemoveWatcher)="RemoveWatcher($event)"
-            (click)="onSelectWatcher($event,watcher)" [watcher]="watcher">
+            (click)="onSelectWatcher(watcher)" [watcher]="watcher">
         </watcher-preview>
+        <h4 class="no-watchers" *ngIf="!watchers.length">No Watchers To Show</h4>
     </section>
     <dialog #watcherDialog>
 
-        <div *ngIf="emptyWatcher">
+        <form (submit)="onSaveWatcher($event,InputName,moviesInput)" *ngIf="emptyWatcher">
             <label for="fullname">
                 <h4>Watcher's Name</h4>
-                <input placeholder="watcher Full name" class="watcher-fullname" type="text"
-                    [(ngModel)]="emptyWatcher.fullname" name="fullname">
+                <input #InputName placeholder="watcher Full name" class="watcher-fullname" type="text" name="fullname">
             </label>
-            
+
             <label for="movie">
                 <h4>Witch Movies Do He Watch</h4>
-                <input placeholder="place , between each movie" class="watcher-fullname" type="text"
-                    [(ngModel)]="movieInput" name="movie">
+                <input #moviesInput placeholder="place , between each movie" class="watcher-fullname" type="text"
+                    name="movie">
             </label>
 
             <section class="actions">
-                <button (click)="onSaveWatcher($event)">Save</button>
-                <button (click)="onCloseDialog($event)">Close</button>
+                <button type="submit">Save</button>
+                <button type="button" (click)="onCloseDialog($event)">Close</button>
             </section>
-        </div>
+        </form>
 
         <div *ngIf="selectedWatcher">
             <h4 class="fullname">{{selectedWatcher.fullname}}</h4>
@@ -34,4 +34,13 @@
             <button (click)="onCloseDialog($event)">Close</button>
         </div>
     </dialog>
+
+    <div class="loading" *ngIf="isLoading; else dataTemplate">
+        <h4>Loading...</h4>
+    </div>
+    
+    <ng-template #dataTemplate>
+        <h4>Data Loaded Successfully</h4>
+    </ng-template>
+
 </section>

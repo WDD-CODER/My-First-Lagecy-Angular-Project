@@ -13,18 +13,25 @@ export class WatchersList {
 
   @ViewChild('watcherDialog') dialogRef!: ElementRef<HTMLDialogElement>;
 
-  selectedWatcher!: Watcher | null
-  emptyWatcher!: Watcher | null
+  selectedWatcher: Watcher | null = null
+  emptyWatcher: Watcher | null = null
   movieInput: string = '';
+  isLoading: boolean = false
 
-  onSaveWatcher(ev: MouseEvent): void {
-    var newMovies: string[] = this.movieInput.split(',').map(movie => movie.trim())
+  onSaveWatcher(ev: SubmitEvent, elInput: HTMLInputElement, elMoviesInput: HTMLInputElement): void {
+    var newMovies: string[] = elMoviesInput.value.split(',').map(movie => movie.trim())
     newMovies.forEach(m => this.emptyWatcher?.movies.push(m))
-    if (this.emptyWatcher?.fullname && this.emptyWatcher.movies[0] !== '') {
+
+    if (this.emptyWatcher && elInput.value && this.emptyWatcher.movies[0] !== '') {
+      this.emptyWatcher.fullname = elInput.value
       this.emptyWatcher._id = this.makeId()
       this.watchers.push(this.emptyWatcher)
       this.movieInput = ''
+      this.isLoading = true
       this.closeDialog()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1500);
     }
     else {
       alert('Missing Info, Watcher Not Saved')
@@ -33,28 +40,28 @@ export class WatchersList {
     }
   }
 
-  onSelectWatcher(ev: MouseEvent, watcher: Watcher) {
-    ev.stopPropagation()
+  onSelectWatcher(watcher: Watcher): void {
     this.selectedWatcher = watcher
     this.dialogRef.nativeElement.showModal()
   }
 
-  onCloseDialog(ev: MouseEvent) {
+  onCloseDialog(ev: MouseEvent): void {
+    ev.stopPropagation()
     this.closeDialog()
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.selectedWatcher = null
     this.emptyWatcher = null
     this.dialogRef.nativeElement.close()
   }
-  onAddWatcher(ev: MouseEvent) {
+  onAddWatcher(ev: MouseEvent): void {
     var newWatcher: Watcher = { _id: this.makeId(), fullname: '', movies: [] }
     this.emptyWatcher = newWatcher
     this.dialogRef.nativeElement.showModal()
   }
 
-  RemoveWatcher(id: string) {
+  RemoveWatcher(id: string): void {
     this.watchers = this.watchers.filter(w => w._id !== id)
   }
 
