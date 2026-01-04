@@ -9,6 +9,7 @@ import { CountDown } from './cmp/count-down/count-down';
 import { WatcherPreview } from './cmp/watcher-preview/watcher-preview';
 import { WatchersList } from './cmp/watchers/watchers-list';
 import { FormsModule } from '@angular/forms';
+import { MouseTracker } from './cmp/mouse-tracker/mouse-tracker';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     Animals,
     CountDown,
     WatchersList,
-    WatcherPreview
+    WatcherPreview,
+    MouseTracker
   ],
   imports: [
     BrowserModule,
